@@ -14,15 +14,19 @@ Session = sessionmaker(bind=db)
 session = Session()
 
 
-def add_trip(train_number, date):
+def add_trip(train_number, date, update=False):
+    existing = session.query(Trip).filter(and_(Trip.train_number == train_number,
+                                               Trip.date == date)).first()
+    if existing and not update:
+        raise Exception('not updating train %d on %s' % (train_number,
+                                                         str(date)))
+
     v = ViaGrabber()
     trip = v.get_status(train_number, date)
     if trip == None:
         raise Exception('no data for train #%d on %s!' % (train_number,
                                                          str(date)))
 
-    existing = session.query(Trip).filter(and_(Trip.train_number == train_number,
-                                               Trip.date == date)).first()
     if existing:
         # existing trip data exists, delete the stop info and update
         for stop in existing.stops:
@@ -49,10 +53,9 @@ def get_historic(train_number):
             print inst
 
 if __name__ == '__main__':
-    trains = [43, 51, 45, 47, 55, 647, 59]
+    # ottawa -> toronto
+    #trains = [41, 43, 51, 45, 47, 55, 647, 59]
+    # toronto -> ottawa
+    trains = [50, 52, 40, 42, 44, 46, 646, 48]
     p = Pool(5)
     p.map(get_historic, trains)
-
-
-
-
