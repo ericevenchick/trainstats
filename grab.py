@@ -57,5 +57,5 @@ if __name__ == '__main__':
     #trains = [41, 43, 51, 45, 47, 55, 647, 59]
     # toronto -> ottawa
     trains = [50, 52, 40, 42, 44, 46, 646, 48]
-    p = Pool(5)
+    p = Pool(len(trains))
     p.map(get_historic, trains)
