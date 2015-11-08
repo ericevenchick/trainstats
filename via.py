@@ -89,50 +89,8 @@ class ViaGrabber:
                 if trip.stops[0].scheduled_dep > scheduled_arr:
                     scheduled_arr += datetime.timedelta(days=1)
 
-            """
-            no estimated time for now
-            # column 3: estimated time
-            if num_rows == 1 and index == 0:
-                # first station, depart time only
-                estimated_arr = None
-                estimated_dep_s = self._get_time(cols[3].find_all('tr')[0].text)
-                if estimated_dep_s:
-                    estimated_dep = self._combine_date(trip_date, estimated_dep_s)
-                else:
-                    estimated_dep = None
-            elif num_rows == 1 and index > 0:
-                # last station, arrival time only
-                estimated_arr_s = self._get_time(cols[3].find_all('tr')[0].text)
-                if estimated_arr_s:
-                    estimated_arr = self._combine_date(trip_date, estimated_arr_s)
-                else:
-                    estimated_arr = None
-                estimated_dep = None
-            elif num_rows > 1:
-                # station has depart and arrival times
-                estimated_arr_s = self._get_time(cols[3].find_all('tr')[0].text)
-                if estimated_arr_s:
-                    estimated_arr = self._combine_date(trip_date, estimated_arr_s)
-                else:
-                    estimated_arr = None
+            # column 3: estimated time, not tracked
 
-                estimated_dep_s = self._get_time(cols[3].find_all('tr')[1].text)
-                if estimated_dep_s:
-                    estimated_dep = self._combine_date(trip_date, estimated_dep_s)
-                else:
-                    estimated_dep = None
-            else:
-                raise Exception('failed to parse estimated time!')
-
-            # check for day overflows
-            if index > 0 and trip.stops[0].estimated_dep and estimated_dep:
-                if trip.stops[0].estimated_dep > estimated_dep:
-                    estimated_dep += datetime.timedelta(days=1)
-            if index > 0 and trip.stops[0].estimated_dep and estimated_arr:
-                if trip.stops[0].estimated_dep > estimated_arr:
-                    estimated_arr += datetime.timedelta(days=1)
-
-            """
             # column 4: actual time
             if num_rows == 1 and index == 0:
                 # first station, depart time only
@@ -173,8 +131,6 @@ class ViaGrabber:
             this_stop.station = station
             this_stop.scheduled_arr = scheduled_arr
             this_stop.scheduled_dep = scheduled_dep
-            # this_stop.estimated_arr = estimated_arr
-            # this_stop.estimated_dep = estimated_dep
             this_stop.actual_arr = actual_arr
             this_stop.actual_dep = actual_dep
             this_stop.remarks = remarks

@@ -34,8 +34,6 @@ class Stop(Base):
     station = Column(String, nullable=False)
     scheduled_arr = Column(DateTime)
     scheduled_dep = Column(DateTime)
-    #estimated_arr = Column(DateTime)
-    #estimated_dep = Column(DateTime)
     actual_arr = Column(DateTime)
     actual_dep = Column(DateTime)
     remarks = Column(String)
@@ -45,8 +43,6 @@ class Stop(Base):
                 (self.station,
                  self.scheduled_arr,
                  self.scheduled_dep,
-                 #self.estimated_arr,
-                 #self.estimated_dep,
                  self.actual_arr,
                  self.actual_dep,
                  self.remarks))
