@@ -49,4 +49,5 @@ class Stop(Base):
 
 if __name__ == '__main__':
     db = create_engine('sqlite:///db.sqlite')
+    db = create_engine('postgresql://viaontime@localhost:5432/viaontime')
     Base.metadata.create_all(db)

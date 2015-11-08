@@ -1,13 +1,15 @@
+import sys
+from datetime import datetime, timedelta
+from multiprocessing import Pool
+
 from sqlalchemy import *
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
-from datetime import datetime, timedelta
-
-db = create_engine('sqlite:///db.sqlite')
 
 from via import ViaGrabber
 from models import *
 
+db = create_engine('postgresql://viaontime@localhost:5432/viaontime')
 Session = sessionmaker(bind=db)
 session = Session()
 
@@ -15,6 +17,9 @@ session = Session()
 def add_trip(train_number, date):
     v = ViaGrabber()
     trip = v.get_status(train_number, date)
+    if trip == None:
+        raise Exception('no data for train #%d on %s!' % (train_number,
+                                                         str(date)))
 
     existing = session.query(Trip).filter(and_(Trip.train_number == train_number,
                                                Trip.date == date)).first()
@@ -25,18 +30,28 @@ def add_trip(train_number, date):
         for stop in trip.stops:
             session.add(stop)
         existing.stops = trip.stops
-        print "updating train #%d on %s" % (trip.train_number, str(date))
+        print 'updating train #%d on %s' % (trip.train_number, str(date))
     else:
         # no existing trip, add this one
-        print "adding train #%d on %s" % (trip.train_number, str(date))
+        print 'adding train #%d on %s' % (trip.train_number, str(date))
         session.add(trip)
 
     session.commit()
 
+def get_historic(train_number):
+    date = datetime.datetime.strptime('2015-04-13', '%Y-%m-%d').date()
+
+    while date < datetime.datetime.today().date() - timedelta(days=1):
+        date += timedelta(days=1)
+        try:
+            add_trip(train_number, date)
+        except Exception as inst:
+            print inst
+
 if __name__ == '__main__':
-    train_number = 87
-    date = datetime.datetime.strptime('2015-11-01', '%Y-%m-%d').date()
-    add_trip(train_number, date)
+    trains = [43, 51, 45, 47, 55, 647, 59]
+    p = Pool(5)
+    p.map(get_historic, trains)
 
 
 
