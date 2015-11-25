@@ -8,7 +8,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from via import ViaGrabber
 from models import *
 
-db = create_engine('postgresql://viaontime@localhost:5432/viaontime')
+db = create_engine('postgresql://viaontime:ontime@localhost:5432/viaontime')
 Session = sessionmaker(bind=db)
 session = Session()
 
@@ -55,6 +55,5 @@ if __name__ == '__main__':
               63, 65, 67, 69, 669, 60, 62, 64, 66, 68, 650, 668, 40, 42, 44, 46,
               646, 48, 648, 41, 641, 43, 643, 45, 47, 647, 71, 73, 75, 81, 83,
               79, 82, 70, 80, 72, 76, 78, 85, 87, 84, 88, 97, 98]
-
-    p = Pool(20)
-    p.map(get_yesterday, trains)
+    for t in trains:
+        get_yesterday(t)

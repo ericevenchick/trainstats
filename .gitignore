@@ -1,3 +1,6 @@
 *.sqlite
 *.pyc
 *.swp
+out
+*.swo
+env

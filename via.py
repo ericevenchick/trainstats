@@ -55,7 +55,7 @@ class ViaGrabber:
             cols = row.find_all('td', recursive=False)
 
             # column 0: station name
-            station = cols[0].text.encode('utf-8')
+            station = cols[0].find_all('a')[0].text.encode('utf-8')
 
             # column 1: dep/arrive text. used to determine number of rows
             num_rows = len(cols[1].find_all('tr'))
