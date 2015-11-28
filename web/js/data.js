@@ -30,8 +30,8 @@ getDelaysAtStation = function(train_number, station, period, callback) {
             for (bin in data.delays[station]) {
                 result[bin] = data.delays[station][bin];
             }
-            self.resolve();
             callback(result);
+            self.resolve();
         });
     });
 }
