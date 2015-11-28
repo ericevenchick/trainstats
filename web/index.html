@@ -58,16 +58,16 @@
 				<h2>Word1</h2>
 				<h2>Word2</h2>
 			</div>
-			<form class="col-md-12 search-box" action="train.html">
+			<form class="col-md-12 search-box" action="index.html" method="GET">
 				<div class="col-md-5 form-group alpha">
 					<label for="origin">Origin</label>
-					<select class="select2 col-md-12 alpha omega" id="originSelect">
+					<select class="select2 col-md-12 alpha omega" name="originSelect" id="originSelect">
 					<option>Select a Station</option>
 					</select>
 				</div>
 				<div class="col-md-5 form-group alpha">
 					<label for="destination">Destination</label>
-					<select class="select2 col-md-12 alpha omega" id="destinationSelect">
+					<select class="select2 col-md-12 alpha omega" name="destinationSelect" id="destinationSelect">
 					<option>Select a Station</option>
 					</select>
 				</div>
@@ -90,7 +90,7 @@
 				<p><a class="btn btn-default" href="#" role="button">View all stats &raquo;</a></p>
 			</div>
 		</div>
-		<div id="statsTrainRoute" class="row" style="">
+		<div id="statsTrainRoute" class="row" style="display:none">
 			<div class="col-md-4">
 				<div class="stat-box">
 					<span class="callout-stat">6 trains</span>
@@ -110,7 +110,7 @@
 				</div>
 			</div>
 
-			<div id="dailyTripDelays" class="col-md-12">
+			<div id="dailyTripDelays" class="col-md-12" style="display:none">
 				<h3>Train Delays</h3>
 				<div id="dailyTripDelaysGraph" style="width:100%"></div>
 			</div>
@@ -141,6 +141,7 @@
 	
 	<!-- Googles Graphs/Charts Library--> 
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	<script type="text/javascript" src="js/data.js"></script>
 	<script type="text/javascript" src="trainstats_custom.js"></script>
 
 	<script type="text/javascript">

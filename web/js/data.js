@@ -22,12 +22,17 @@ getTrainsByRoute = function(origin, dest) {
 }
 
 getDelaysAtStation = function(train_number, station, period, callback) {
-    $.getJSON('data/train/' + train_number + '/report-' + period, function(data) {
-        result = {}
-        for (bin in data.delays[station]) {
-            result[bin] = data.delays[station][bin] / data.delays[station].count * 100;
-        }
-        callback(result);
+    return $.Deferred( function() {
+        var self = this;
+        $.getJSON('data/train/' + train_number + '/report-' + period, function(data) {
+            result = {}
+            result['train_number'] = train_number;
+            for (bin in data.delays[station]) {
+                result[bin] = data.delays[station][bin];
+            }
+            self.resolve();
+            callback(result);
+        });
     });
 }
 
