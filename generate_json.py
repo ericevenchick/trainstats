@@ -51,44 +51,11 @@ if __name__ == '__main__':
                                     order_by(desc(Trip.date)).\
                                     limit(60).\
                                     all()
-        """
-        for trip in trips:
-            stops = session.query(Stop).filter_by(trip_id = trip.id).\
-                                       order_by(asc(Stop.sequence_number))
-            stop_data[str(trip.date)] = []
-            for s in stops:
-                if s.scheduled_arr:
-                    sch_arr = s.scheduled_arr.strftime('%H:%M')
-                else:
-                    sch_arr = None
-                if s.actual_arr:
-                    act_arr = s.actual_arr.strftime('%H:%M')
-                else:
-                    act_arr = None
-                if s.scheduled_dep:
-                    sch_dep = s.scheduled_dep.strftime('%H:%M')
-                else:
-                    sch_dep = None
-                if s.actual_dep:
-                    act_dep = s.actual_dep.strftime('%H:%M')
-                else:
-                    act_dep = None
-
-                stop_data[str(trip.date)].append({'st': s.station,
-                                                  'sa': sch_arr,
-                                                  'aa': act_arr,
-                                                  'sd': sch_dep,
-                                                  'ad': act_dep
-                                                })
-        """
         try:
             os.makedirs('out/data/train/%d' % train_number)
         except OSError:
             # ignore directory exists error
             pass
-
-        #with open('out/data/train/%d/data' % train_number, 'w') as f:
-        #    json.dump(stop_data, f, separators=(',', ':'))
 
         r = Report(train_number)
         # get 6 month data
