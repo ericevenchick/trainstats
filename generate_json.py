@@ -37,8 +37,8 @@ if __name__ == '__main__':
         train_info['train_stops'][t] = []
         for s in stops:
             train_info['train_stops'][t].append(remove_accents(s.station))
-            if not s.station in train_info['all_stops']:
-                train_info['all_stops'].append(s.station)
+            if not remove_accents(s.station) in train_info['all_stops']:
+                train_info['all_stops'].append(remove_accents(s.station))
 
     with open('out/data/train_info', 'w') as f:
         json.dump(train_info, f, separators=(',', ':'))
@@ -51,6 +51,7 @@ if __name__ == '__main__':
                                     order_by(desc(Trip.date)).\
                                     limit(60).\
                                     all()
+        """
         for trip in trips:
             stops = session.query(Stop).filter_by(trip_id = trip.id).\
                                        order_by(asc(Stop.sequence_number))
@@ -79,15 +80,15 @@ if __name__ == '__main__':
                                                   'sd': sch_dep,
                                                   'ad': act_dep
                                                 })
-
+        """
         try:
             os.makedirs('out/data/train/%d' % train_number)
         except OSError:
             # ignore directory exists error
             pass
 
-        with open('out/data/train/%d/data' % train_number, 'w') as f:
-            json.dump(stop_data, f, separators=(',', ':'))
+        #with open('out/data/train/%d/data' % train_number, 'w') as f:
+        #    json.dump(stop_data, f, separators=(',', ':'))
 
         r = Report(train_number)
         # get 6 month data
@@ -95,6 +96,11 @@ if __name__ == '__main__':
         with open('out/data/train/%d/report-180' % train_number, 'w') as f:
             json.dump(r.to_object(), f, separators=(',', ':'))
         average_delays[train_number] = r.average_delay
+
+        # get 3 month data
+        r.make_report(90)
+        with open('out/data/train/%d/report-90' % train_number, 'w') as f:
+            json.dump(r.to_object(), f, separators=(',', ':'))
 
         # get 1 month data
         r.make_report(30)
