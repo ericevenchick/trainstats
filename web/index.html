@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>VIA On Time</title>
+	<script src="js/ChartNew.js"></script>
+
+	<!-- Bootstrap -->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="select2-3.5.4/select2.css" rel="stylesheet">
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+	<style type="text/css">
+	.alpha {
+		padding-left: 0px;
+	}
+	.omega {
+		padding-right: 0px;
+	}
+	.button-push {
+		margin-top: 24px;
+	}
+
+	.jumbotron-sub {
+		margin-top: 48px;
+	}
+
+	.callout-stat {
+		font-weight: bold;
+		font-size: 48px;
+	}
+	.callout-desc {
+		font-size: 16px;
+	}
+
+	label {
+		font-size: 12px;
+	}
+	.progress {
+		margin-bottom: 0px;
+	}
+	.select2-container-multi .select2-choices {
+		border-radius: 3px;
+		border-color: #ccc;
+	}
+	.jumbotron {
+		background: url("https://upload.wikimedia.org/wikipedia/commons/6/61/DGJ_8658_-_VIA_Rail.jpg");
+		    background-size: cover;
+	}
+	.search-box {
+		background: url("white_bg.png");
+		padding-top: 15px;
+		padding-bottom: 15px;
+	}
+	</style>
+</head>
+
+
+<body>
+
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Via On Time</a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+
+			</div><!--/.navbar-collapse -->
+		</div>
+	</nav>
+
+	<!-- Main jumbotron for a primary marketing message or call to action -->
+	<div class="jumbotron">
+		<div class="container">
+		</br>
+				<h3>XX% of VIA Rail's Ontario-Quebec corridor trains are delayed over 15 min, primarily because of freight traffic.</h3>
+				</br>
+				<h1>How late was your train?</h1>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+				<form class="col-md-12 search-box" action="train.html">
+					<div class="col-md-5 form-group alpha">
+						<label for="origin">Origin</label>
+						<select multiple class="select2 col-md-12 alpha omega" id="origin">
+							<option>Cornwall</option>
+							<option>Ottawa</option>
+							<option>Montreal</option>
+							<option>Kitchener</option>
+							<option>Toronto</option>
+						</select>
+					</div>
+					<div class="col-md-5 form-group alpha">
+						<label for="destination">Destination</label>
+						<select multiple class="select2 col-md-12 alpha omega" id="destination">
+							<option>Cornwall</option>
+							<option>Ottawa</option>
+							<option>Montreal</option>
+							<option>Kitchener</option>
+							<option>Toronto</option>
+						</select>
+					</div>
+					<button type="submit" class="col-md-2 btn btn-default button-push">Search Stats &raquo;</button>
+				</form>
+</br></br></br>
+			</div>
+		</div>
+
+		<div class="container">
+			<!-- Example row of columns -->
+			<div class="row">
+				<div class="col-md-6">
+					<h2>Best Performing Trains</h2>
+					<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+					<p><a class="btn btn-default" href="#" role="button">View all stats &raquo;</a></p>
+				</div>
+				<div class="col-md-6">
+					<h2>Worst Performing Trains</h2>
+					<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+					<p><a class="btn btn-default" href="#" role="button">View all stats &raquo;</a></p>
+				</div>
+			</div>
+
+			<hr>
+
+			<footer>
+				<p>&copy; 2015 Company, Inc.</p>
+			</footer>
+		</div> <!-- /container -->
+
+
+
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="js/bootstrap.min.js"></script>
+
+	<script src="select2-3.5.4/select2.js"></script>
+
+	<script type="text/javascript">
+
+$(".select2").select2({
+  maximumSelectionLength: 1,
+    placeholder: "Select a station",
+});
+</script>
+
+	</body>
+	</html>
