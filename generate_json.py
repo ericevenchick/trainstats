@@ -1,9 +1,11 @@
 import json
+import os
 from sqlalchemy import *
 from sqlalchemy.orm import sessionmaker, joinedload
 from sqlalchemy.ext.declarative import declarative_base
 
 from models import *
+from report import *
 import unicodedata
 
 def remove_accents(input_str):
@@ -16,23 +18,31 @@ Session = sessionmaker(bind=db)
 session = Session()
 
 if __name__ == '__main__':
-    # all corridor trains
-    trains = [15, 33, 23, 25, 27, 29, 20, 22, 24, 26, 28, 628, 14, 51, 633, 55,
-              59, 37, 639, 39, 30, 32, 632, 50, 634, 52, 38, 638, 651, 655, 61,
-              63, 65, 67, 69, 669, 60, 62, 64, 66, 68, 650, 668, 40, 42, 44, 46,
-              646, 48, 648, 41, 641, 43, 643, 45, 47, 647, 71, 73, 75, 81, 83,
-              79, 82, 70, 80, 72, 76, 78, 85, 87, 84, 88, 97, 98]
+    # all corridor trains, 97 removed due to lack of US arrival data
+    # 15 removed due to being rare/outlier
+    trains = [33, 23, 25, 27, 29, 20, 22, 24, 26, 28, 14, 51, 55,
+              59, 37, 39, 30, 32, 50, 52, 38, 61,
+              63, 65, 67, 69, 60, 62, 64, 66, 68, 40, 42, 44, 46,
+              48, 41, 43, 45, 47, 71, 73, 75, 81, 83,
+              79, 82, 70, 80, 72, 76, 78, 85, 87, 84, 88, 98]
     
-    train_data = {}
+    train_info = {'all_stops': [], 'train_stops': {}}
+    average_delays = {}
     for t in trains:
         latest = session.query(Trip).filter_by(train_number = t)\
                                     .order_by(desc(Trip.date))\
                                     .first()
         stops = session.query(Stop).filter_by(trip_id = latest.id)\
                                    .all()
-        train_data[t] = {'stops': []}
+        train_info['train_stops'][t] = []
         for s in stops:
-            train_data[t]['stops'].append(remove_accents(s.station))
+            train_info['train_stops'][t].append(remove_accents(s.station))
+            if not s.station in train_info['all_stops']:
+                train_info['all_stops'].append(s.station)
+
+    with open('out/data/train_info', 'w') as f:
+        json.dump(train_info, f, separators=(',', ':'))
+
 
     for train_number in trains:
         stop_data = {}
@@ -69,8 +79,32 @@ if __name__ == '__main__':
                                                   'sd': sch_dep,
                                                   'ad': act_dep
                                                 })
-                with open('out/train/%d' % train_number, 'w') as f:                                 
-                    json.dump(stop_data, f, separators=(',', ':'))
+
+        try:
+            os.makedirs('out/data/train/%d' % train_number)
+        except OSError:
+            # ignore directory exists error
+            pass
+
+        with open('out/data/train/%d/data' % train_number, 'w') as f:
+            json.dump(stop_data, f, separators=(',', ':'))
+
+        r = Report(train_number)
+        # get 6 month data
+        r.make_report(180)
+        with open('out/data/train/%d/report-180' % train_number, 'w') as f:
+            json.dump(r.to_object(), f, separators=(',', ':'))
+        average_delays[train_number] = r.average_delay
+
+        # get 1 month data
+        r.make_report(30)
+        with open('out/data/train/%d/report-30' % train_number, 'w') as f:
+            json.dump(r.to_object(), f, separators=(',', ':'))
+
         print train_number
 
-    print json.dumps(train_data, separators=(',', ':'))
+    with open('out/data/average_delays', 'w') as f:
+        json.dump(average_delays, f, separators=(',', ':'))
+
+
+    
