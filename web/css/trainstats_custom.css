@@ -1,0 +1,138 @@
+/*Bootstrap Overides*/
+.navbar-nav>li>a {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.navbar {
+	min-height: 30px;
+}
+
+h3 {
+	font-family: 'Montserrat', sans-serif;
+	text-transform: uppercase;
+}
+
+
+/*Header / Nav Bar Stuff*/
+
+.trainstats-header {
+	margin-top: 55px;
+	margin-bottom: 20px;
+}
+
+span.title {
+	font-size: 30px;
+	font-family: 'Montserrat', sans-serif;
+	font-style: italic;
+}
+img.social-share {
+	height: 25px;
+}
+
+body {
+	background-color: #f8f8f8;
+}
+
+
+/*Jumbotron / Image / Search Box*/
+.jumbotron {
+	min-height: 500px;
+	background: url("/via_train_corner_web1.jpg");
+	background-size: cover;
+	background-position: center;
+}
+
+.jumbo-cta {
+	margin-top: 200px;
+	margin-bottom: 50px;
+	text-align:right;
+}
+
+.search-box {
+	background-color: rgba(000, 000, 000, 0.6);
+}
+
+label {
+	font-size: 12px;
+	color: #FFF;
+	font-family: 'Montserrat', sans-serif;
+	text-transform: uppercase;
+}
+
+.select2-container .select2-choice {
+	padding-top: 3px;
+	height: 34px;
+	overflow-y: auto;
+}
+
+.select2-arrow>b {
+	top: 3px;
+	position: relative;
+}
+
+/*Train Detail Page Stat Boxes*/
+
+.stat-box {
+	font-family: 'Montserrat', sans-serif;
+	background-color: #fc4242;
+	padding:10px;
+	color: #FFF;
+}
+.stat-box>.callout-stat {
+	font-weight: bold;
+}
+.stat-box>.callout-desc {
+	font-weight: normal;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.alpha {
+	padding-left: 0px;
+}
+.omega {
+	padding-right: 0px;
+}
+.button-push {
+	margin-top: 24px;
+}
+
+.jumbotron-sub {
+	margin-top: 48px;
+}
+
+.callout-stat {
+	font-weight: bold;
+	font-size: 48px;
+}
+.callout-desc {
+	font-size: 16px;
+}
+
+label {
+	font-size: 12px;
+}
+.progress {
+	margin-bottom: 0px;
+}
+.select2-container-multi .select2-choices {
+	border-radius: 3px;
+	border-color: #ccc;
+}
+
+.search-box {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
