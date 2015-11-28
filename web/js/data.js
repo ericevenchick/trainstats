@@ -1,4 +1,12 @@
 var train_info
+
+dataInit = function(callback) {
+  $.getJSON('data/train_info', function(data) {
+    train_info = data;
+    callback();
+  });
+}
+
 getTrainsByRoute = function(origin, dest) {
     /* given two station names, returns an array of train numbers that make the
        specified trip */
