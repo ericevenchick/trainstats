@@ -46,9 +46,41 @@ body {
 }
 
 .jumbo-cta {
-	margin-top: 200px;
-	margin-bottom: 50px;
-	text-align:right;
+	margin-top: 130px;
+	margin-bottom: 60px;
+	text-align:left;
+}
+
+.jumbo-cta>h1{
+	background-color: rgba(000, 000, 000, 0.6);
+	font-family: 'Montserrat', sans-serif;
+	padding: 20px;
+	margin-top: 0px;
+	padding-top: 10px;
+	color: #FFF;
+	width: 80%;
+	font-size: 60px;
+	display: table;
+}
+
+.jumbo-cta>.background-copy {
+	background-color: rgba(000, 000, 000, 0.6);
+	font-family: 'Montserrat', sans-serif;
+	padding: 20px;
+	display: table;
+	width: auto;
+	padding-bottom: 0px;
+	font-size: 30px;
+	color: #FFF;
+}
+
+.jumbo-cta>h2{
+	background-color: rgba(000, 000, 000, 0.6);
+	font-family: 'Montserrat', sans-serif;
+	padding: 20px;
+	color: #FFF;
+	width: auto;
+	display: table;
 }
 
 .search-box {
@@ -77,7 +109,7 @@ label {
 
 .stat-box {
 	font-family: 'Montserrat', sans-serif;
-	background-color: #fc4242;
+	background-color: #feba0d;
 	padding:10px;
 	color: #FFF;
 }

@@ -24,7 +24,7 @@ var data = google.visualization.arrayToDataTable(trainData);
           title: 'Percentage of Trips'
         },
         chartArea:{left:60,top:30,width:"100%",height:350},
-        colors: ['#FF9090', '#fc4242', '#B60707'],
+        colors: ['#FFD569', '#FEBA0D', '#A07300'],
   
       fontName: 'Montserrat',
       fontSize: 14,
@@ -60,6 +60,11 @@ function getParameterByName(name) {
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
+function toTitleCase(str)
+{
+    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+}
+
 
 // *************************************************************
 // Helper Functions / Controllers of Page Content
@@ -70,8 +75,18 @@ function loadTripDelaysByTrain(originStation, destStation) {
   arrangeTrainBucketData(originStation,destStation);
 }
 
-function loadTripFastFactsStats() {
+function loadTripFastFactsStats(originStation, destStation) {
+  var numTrains = getTrainsByRoute(originStation, destStation).length;
+  $('.num-trains-run-cta').text(numTrains + ' trains');
+  $('.num-trains-run-desc').text('run between ' + toTitleCase(originStation) + ' and ' + toTitleCase(destStation));
 
+  getAverageDelays(originStation,destStation,180,10, function(e){
+    $('.num-ten-or-more-late-cta').text(Math.round(e) + '%');
+  });
+
+  getAverageDelays(originStation,destStation,180,30, function(e){
+    $('.num-thirty-or-more-late-cta').text(Math.round(e) + '%');
+  });
 }
 
 function loadAllStations() {
@@ -101,6 +116,7 @@ function renderTrainDetails() {
     $('#statsTrainRoute').show();
     $('#dailyTripDelays').show();
     loadTripDelaysByTrain(originStation, destStation);
+    loadTripFastFactsStats(originStation, destStation);
   }
 }
 
