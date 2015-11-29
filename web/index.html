@@ -80,7 +80,7 @@
 
 	<div class="container">
 		<!-- Example row of columns -->
-		<div id="statsBestWorst" class="row" style="display:none">
+		<div id="statsBestWorst" class="row">
 			<div class="col-md-6">
 				<h2>Best Performing Trains</h2>
 				<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
@@ -92,25 +92,27 @@
 				<p><a class="btn btn-default" href="#" role="button">View all stats &raquo;</a></p>
 			</div>
 		</div>
-		<div id="statsTrainRoute" class="row" style="display:none">
-			<div class="col-md-4">
-				<div class="stat-box">
+		<div id="statsTrainRoute" class="row stat-box-row" style="display:none">
+			<div class="col-md-4 stat-box-container">
+				<div class="stat-box" id="num-trains-route-stat" >
 					<span class="callout-stat num-trains-run-cta">6 trains</span>
 					<p class="callout-desc num-trains-run-desc"></p>
 				</div>
 			</div>
-			<div class="col-md-4">
+			<div class="col-md-4 stat-box-container">
 				<div class="stat-box">
 					<span class="callout-stat num-ten-or-more-late-cta">60%</span>
 					<p class="callout-desc">are over 10 minutes late</p>
 				</div>
 			</div>
-			<div class="col-md-4">
+			<div class="col-md-4 stat-box-container">
 				<div class="stat-box">
 				<span class="callout-stat num-thirty-or-more-late-cta"></span>
 				<p class="callout-desc">are over 30 minutes late</p>
 				</div>
 			</div>
+		</div>
+		<div class="row">
 
 			<div id="dailyTripDelays" class="col-md-12" style="display:none">
 				<h3>Train Delays</h3>
@@ -137,6 +139,7 @@
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="js/bootstrap.min.js"></script>
 	<script src="select2-3.5.4/select2.js"></script>

@@ -87,6 +87,13 @@ function loadTripFastFactsStats(originStation, destStation) {
   getAverageDelays(originStation,destStation,180,30, function(e){
     $('.num-thirty-or-more-late-cta').text(Math.round(e) + '%');
   });
+
+
+  //crappy height way
+  // @todo: come back and fix this bc this is shit
+
+  var routeHeight = $('#num-trains-route-stat').height();
+  $('.stat-box').css('height', routeHeight + 15);
 }
 
 function loadAllStations() {
@@ -96,23 +103,29 @@ function loadAllStations() {
   var allStations = train_info.all_stops;
 
   for (var i = 0; i < allStations.length; i++) {
-    originStationMenu.append("<option>" + allStations[i] + "</option>");
-    destStationMenu.append("<option>" + allStations[i] + "</option>");
+    originStationMenu.append("<option value=\"" + allStations[i] + "\">" + allStations[i] + "</option>");
+    destStationMenu.append("<option value=\"" + allStations[i] + "\">" + allStations[i] + "</option>");
   };
 
-  //init for auto completing
+//  init for auto completing
   $(".select2").select2();
 
   renderTrainDetails();
 }
 
 function renderTrainDetails() {
-  // check that we actually have parameters passed
-  console.log('in render');
   var originStation = getParameterByName('originSelect');
   var destStation = getParameterByName('destinationSelect');
 
   if(originStation.length > 0 && destStation.length > 0) {
+
+    $('[name=originSelect] option[value="' + originStation + '"]').prop('selected','selected');
+    $('[name=destinationSelect] option[value="' + destStation + '"]').prop('selected',true);
+
+$('#originSelect').val(originStation).trigger('change');
+$('#destinationSelect').val(destStation).trigger('change');
+
+    $('#statsBestWorst').hide();
     $('#statsTrainRoute').show();
     $('#dailyTripDelays').show();
     loadTripDelaysByTrain(originStation, destStation);

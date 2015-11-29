@@ -47,7 +47,7 @@ body {
 
 .jumbo-cta {
 	margin-top: 130px;
-	margin-bottom: 60px;
+	margin-bottom: 20px;
 	text-align:left;
 }
 
@@ -109,7 +109,6 @@ label {
 
 .stat-box {
 	font-family: 'Montserrat', sans-serif;
-	background-color: #feba0d;
 	padding:10px;
 	color: #FFF;
 }
@@ -123,7 +122,17 @@ label {
 
 
 
+.stat-box-row {
+    /*display: table;*/
+}
 
+.stat-box-container {
+	    /*float: none;*/
+    /*display: table-cell;*/
+    vertical-align: top;
+        background-color:#feba0d;	
+    background-clip:content-box;
+}
 
 
 
