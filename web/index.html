@@ -14,6 +14,7 @@
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="select2-3.5.4/select2.css" rel="stylesheet">
 	<link href="css/trainstats_custom.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -24,34 +25,6 @@
 </head>
 
 <body>
-<!-- 	<nav class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#"></a>
-			</div>
-			<div id="navbar" class="navbar-collapse collapse">
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href=""><img class="social-share" src="/fb_icon.png"></a></li>
-					<li><a href=""><img class="social-share" src="/twitter_icon.png"></a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-	<div class="trainstats-header container">
-		<div class="row">
-			<div class="col-md-5">
-				<span class="title">TrainStats</span>			
-			</div>
-		</div>		
-	</div> -->
-
-	<!-- Main jumbotron for a primary marketing message or call to action -->
 	<div class="jumbotron">
 		<div class="container">
 			<div class="jumbo-cta">
@@ -60,6 +33,7 @@
 				XX% of VIA Rail's trains are delayed 10+ minutes.</h1>
 				<h2>How late is your train?</h2>
 			</div>
+			<a name="searchBox"></a>
 			<form class="col-md-12 search-box" action="index.html" method="GET">
 				<div class="col-md-5 form-group alpha">
 					<label for="origin">Origin</label>
@@ -73,8 +47,13 @@
 					<option>Select a Station</option>
 					</select>
 				</div>
-				<button type="submit" class="col-md-2 btn btn-default button-push">Search Stats &raquo;</button>
+				<button type="submit" class="col-md-2 btn btn-default button-push">View Ontime Record &raquo;</button>
 			</form>
+			<div class="social-media-share">
+			<div class="addthis_native_toolbox"></div>
+				<!-- <a class="btn btn-default btn-xs twitter-share" href=""><i class="fa fa-twitter-square"></i> Share on Twitter</a>
+				<a class="btn btn-default btn-xs fb-share" href=""><i class="fa fa-facebook-official"></i> Share on Facebook</a> -->
+			</div>
 		</div>
 	</div>
 
@@ -83,13 +62,25 @@
 		<div id="statsBestWorst" class="row">
 			<div class="col-md-6">
 				<h2>Best Performing Trains</h2>
-				<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-				<p><a class="btn btn-default" href="#" role="button">View all stats &raquo;</a></p>
+				<table class="table table-striped table-bordered">
+  					<thead>
+  						<th class="stats-train-route">Train</th>
+  						<th class="stats-train-route">Average Delay</th>
+  					</thead>
+  					<tbody id="bestTrainsTableBody" class="stats-train-route table table-striped">
+  					</tbody>
+				</table>
 			</div>
 			<div class="col-md-6">
 				<h2>Worst Performing Trains</h2>
-				<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-				<p><a class="btn btn-default" href="#" role="button">View all stats &raquo;</a></p>
+				<table class="table table-striped table-bordered">
+  					<thead>
+  						<th class="stats-train-route">Train</th>
+  						<th class="stats-train-route">Average Delay</th>
+  					</thead>
+  					<tbody id="worstTrainsTableBody" class="stats-train-route table table-striped">
+  					</tbody>
+				</table>
 			</div>
 		</div>
 		<div id="statsTrainRoute" class="row stat-box-row" style="display:none">
@@ -113,25 +104,27 @@
 			</div>
 		</div>
 		<div class="row">
-
 			<div id="dailyTripDelays" class="col-md-12" style="display:none">
-				<h3>Train Delays</h3>
+				<h2>Train Delays</h2>
 				<div id="dailyTripDelaysGraph" style="width:100%"></div>
 			</div>
-
-<!-- 			<div id="" class="col-md-12">
-				<h3>Minutes Late, by Train</h3>
-				<canvas id="canvas" height="350"></canvas>
-			</div> -->
 		</div>
 
-
+		<div class="row">
+			<div id="" class="col-md-12" style="">
+				<h2>About TrainStats</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc lobortis augue ut diam ultrices ultrices. Aenean augue enim, porttitor in dictum ac, vehicula quis augue. Sed eu faucibus nibh, sit amet commodo magna. Morbi quis purus sed dolor aliquet vulputate eu et purus. Nam cursus interdum accumsan. Vestibulum et convallis massa, nec ullamcorper lacus. Aenean vulputate venenatis pellentesque. Suspendisse porttitor dolor ut lectus cursus, non vestibulum dolor tincidunt. Ut viverra laoreet massa. Pellentesque velit ligula, tristique vitae est eu, dapibus molestie nisi.</p>
+			</div>
+		</div>
 
 
 		<hr>
 
 		<footer>
-			<p>&copy; 2015 Company, Inc.</p>
+			<p class="col-md-6 alpha">Created by <a href="http://www.twitter.com/ericevenchick">Eric Evenchick</a> and <a href="http://www.twitter.com/phileverson">Phil Everson</a>. Get in touch with us <a href="mailto:info@trainstats.ca">here</a>.</p>
+			<p class="col-md-6 links-footer omega">
+				Data collectd with VIA Rail Canada's <a target="_Blank" href="http://reservia.viarail.ca/tsi/tsiresult.aspx?l=en&from=iframe">Train-Alert Service</a>. No affiliation with VIA Rail Canada.
+			</p>
 		</footer>
 	</div> <!-- /container -->
 
@@ -149,9 +142,9 @@
 	<script type="text/javascript" src="js/data.js"></script>
 	<script type="text/javascript" src="trainstats_custom.js"></script>
 
-	<script type="text/javascript">
+	<!-- Go to www.addthis.com/dashboard to customize your tools -->
+	<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-565b15d19a63348b" async="async"></script>
 
-	</script>
 
 </body>
 </html>

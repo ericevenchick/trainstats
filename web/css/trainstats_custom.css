@@ -15,6 +15,26 @@ h3 {
 	text-transform: uppercase;
 }
 
+h2 {
+	font-family: 'Montserrat', sans-serif;
+	text-transform: uppercase;
+}
+
+p {
+	font-family: 'Montserrat', sans-serif;
+}
+
+.alpha {
+	padding-left: 0px;
+}
+
+.omega {
+	padding-right: 0px;
+}
+
+.button-push {
+	margin-top: 24px;
+}
 
 /*Header / Nav Bar Stuff*/
 
@@ -36,7 +56,29 @@ body {
 	background-color: #f8f8f8;
 }
 
+.social-media-share {
+	margin-top: 15px;
+	margin-right: 15px;
+	float: right;
+}
+.social-media-share > a {
+	margin-left: 10px;
+	color: #FFF;
+}
 
+.social-media-share > a:hover {
+	color: #FFF;
+}
+
+.social-media-share > a.fb-share {
+	background-color: #3b5998;
+	border-color: #dfe3ee;
+}
+
+.social-media-share > a.twitter-share {
+	background-color: #55acee;
+	border-color: #bfbfbf;
+}
 /*Jumbotron / Image / Search Box*/
 .jumbotron {
 	min-height: 500px;
@@ -47,7 +89,7 @@ body {
 
 .jumbo-cta {
 	margin-top: 130px;
-	margin-bottom: 20px;
+	margin-bottom: 15px;
 	text-align:left;
 }
 
@@ -97,12 +139,24 @@ label {
 .select2-container .select2-choice {
 	padding-top: 3px;
 	height: 34px;
-	overflow-y: auto;
+	overflow-y: hidden;
 }
 
 .select2-arrow>b {
 	top: 3px;
 	position: relative;
+	overflow-y: hidden;
+}
+
+
+/*Top 10 / Worst 10*/
+tbody.stats-train-route > tr > td, th.stats-train-route {
+	font-family: 'Montserrat', sans-serif;
+	font-size: 12px;
+}
+
+span.stats-train-route {
+	font-size: 10px;
 }
 
 /*Train Detail Page Stat Boxes*/
@@ -119,19 +173,23 @@ label {
 	font-weight: normal;
 }
 
-
-
-
-.stat-box-row {
-    /*display: table;*/
-}
-
 .stat-box-container {
-	    /*float: none;*/
-    /*display: table-cell;*/
-    vertical-align: top;
-        background-color:#feba0d;	
-    background-clip:content-box;
+	vertical-align: top;
+	background-color:#feba0d;	
+	background-clip:content-box;
+}
+
+/*Footer Stuff*/
+p.links-footer {
+	text-align: right;
+}
+
+p.links-footer > a {
+
+}
+
+footer {
+	font-size: 10px;
 }
 
 
@@ -140,15 +198,6 @@ label {
 
 
 
-.alpha {
-	padding-left: 0px;
-}
-.omega {
-	padding-right: 0px;
-}
-.button-push {
-	margin-top: 24px;
-}
 
 .jumbotron-sub {
 	margin-top: 48px;
