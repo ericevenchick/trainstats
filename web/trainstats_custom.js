@@ -41,13 +41,23 @@ function addDataCallback(e) {
 
 function arrangeTrainBucketData(originStation, destStation) {
 	var allTrains = getTrainsByRoute(originStation, destStation);
-	var deferred = [];
-	for (var i = 0; i < allTrains.length; i++) {
-		deferred.push(getDelaysAtStation(allTrains[i], destStation, 180, addDataCallback));
+	if(allTrains.length == 0) {
+		console.log('none');
+		$(".phil-error").show()
+		loadTop10Slow();
+				$('#statsBestWorst').show();
+		$('#statsTrainRoute').hide();
+		$('#dailyTripDelays').hide();
 	}
-	$.when.apply($, deferred).then(function() {
-		drawStackedTripDelaysByTrain();
-	});
+	else {
+		var deferred = [];
+		for (var i = 0; i < allTrains.length; i++) {
+			deferred.push(getDelaysAtStation(allTrains[i], destStation, 180, addDataCallback));
+		}
+		$.when.apply($, deferred).then(function() {
+			drawStackedTripDelaysByTrain();
+		});
+	}
 }
 
 
@@ -69,6 +79,15 @@ function scrollToAnchor(aid){
     $('html,body').animate({scrollTop: aTag.offset().top},'slow');
 }
 
+
+
+/**
+ * Returns a random integer between min (inclusive) and max (inclusive)
+ * Using Math.round() will give you a non-uniform distribution!
+ */
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 // *************************************************************
 // Helper Functions / Controllers of Page Content
@@ -157,6 +176,17 @@ function loadTop10Slow() {
 	})
 }
 
+function randomBigStat() {
+	var randomStat = getRandomInt(0,2)
+	if(randomStat == 0) {
+		$("#bigStat").text("VIA Rail's trains are delayed an average of 12.88 minutes each trip.");
+	} else if(randomStat == 1) {
+		$("#bigStat").text("39.56% of VIA Rail's trains are delayed 10+ minutes.")
+	} else {
+		$("#bigStat").text("10% of VIA Rail's trains are delayed 30+ minutes.")
+	}
+}
+
 
 // *************************************************************
 // Controlling Page / On Load Controller
@@ -164,4 +194,5 @@ function loadTop10Slow() {
 
 $( document ).ready(function() {
 	dataInit(loadAllStations);
+	randomBigStat();
 });

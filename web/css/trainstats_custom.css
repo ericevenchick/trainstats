@@ -148,6 +148,12 @@ label {
 	overflow-y: hidden;
 }
 
+.phil-error {
+	color: red;
+	font-weight: bold;
+	font-family: 'Montserrat', sans-serif;
+}
+
 
 /*Top 10 / Worst 10*/
 tbody.stats-train-route > tr > td, th.stats-train-route {
@@ -189,7 +195,7 @@ p.links-footer > a {
 }
 
 footer {
-	font-size: 10px;
+	font-size: 12px;
 }
 
 

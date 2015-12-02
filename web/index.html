@@ -5,7 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>TrainStats</title>
+	<title>TrainStats | VIA Rail Canada's ontime records for the past 180 days.</title>
 
 	<!-- Fonts -->
 	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
@@ -15,6 +15,17 @@
 	<link href="select2-3.5.4/select2.css" rel="stylesheet">
 	<link href="css/trainstats_custom.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+	<!-- GA -->
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-70927020-1', 'auto');
+	  ga('send', 'pageview');
+	</script>
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -29,8 +40,8 @@
 		<div class="container">
 			<div class="jumbo-cta">
 				<span class="background-copy">Largely due to freight traffic,</span>
-				<h1>
-				XX% of VIA Rail's trains are delayed 10+ minutes.</h1>
+				<h1 id="bigStat">
+				</h1>
 				<h2>How late is your train?</h2>
 			</div>
 			<a name="searchBox"></a>
@@ -48,6 +59,9 @@
 					</select>
 				</div>
 				<button type="submit" class="col-md-2 btn btn-default button-push">View Ontime Record &raquo;</button>
+				<div class="col-md-12 alpha phil-error" style="display:none">
+					Sorry, it doesn't look like they're any routes between those stations. Please try again.
+				</div>
 			</form>
 			<div class="social-media-share">
 			<div class="addthis_native_toolbox"></div>
@@ -110,20 +124,20 @@
 			</div>
 		</div>
 
-		<div class="row">
+<!-- 		<div class="row">
 			<div id="" class="col-md-12" style="">
 				<h2>About TrainStats</h2>
 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc lobortis augue ut diam ultrices ultrices. Aenean augue enim, porttitor in dictum ac, vehicula quis augue. Sed eu faucibus nibh, sit amet commodo magna. Morbi quis purus sed dolor aliquet vulputate eu et purus. Nam cursus interdum accumsan. Vestibulum et convallis massa, nec ullamcorper lacus. Aenean vulputate venenatis pellentesque. Suspendisse porttitor dolor ut lectus cursus, non vestibulum dolor tincidunt. Ut viverra laoreet massa. Pellentesque velit ligula, tristique vitae est eu, dapibus molestie nisi.</p>
 			</div>
-		</div>
+		</div> -->
 
 
 		<hr>
 
 		<footer>
-			<p class="col-md-6 alpha">Created by <a href="http://www.twitter.com/ericevenchick">Eric Evenchick</a> and <a href="http://www.twitter.com/phileverson">Phil Everson</a>. Get in touch with us <a href="mailto:info@trainstats.ca">here</a>.</p>
+			<p class="col-md-6 alpha">Created by <a href="http://www.twitter.com/ericevenchick">Eric Evenchick</a> and <a href="http://www.twitter.com/phileverson">Phil Everson</a>. Get in touch with us <a href="mailto:trainstats@evenchick.com">here</a>.</p>
 			<p class="col-md-6 links-footer omega">
-				Data collectd with VIA Rail Canada's <a target="_Blank" href="http://reservia.viarail.ca/tsi/tsiresult.aspx?l=en&from=iframe">Train-Alert Service</a>. No affiliation with VIA Rail Canada.
+				All data from the past 180 days, collected using VIA Rail Canada's <a target="_Blank" href="http://reservia.viarail.ca/tsi/tsiresult.aspx?l=en&from=iframe">Train-Alert Service</a>. </br>No affiliation with VIA Rail Canada.
 			</p>
 		</footer>
 	</div> <!-- /container -->
